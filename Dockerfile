@@ -21,6 +21,7 @@ RUN ~/miniconda3/bin/conda init bash && bash ~/.bashrc && . ~/.bashrc && \
 	
 ENV conda ~/miniconda3/bin/conda
 ENV bashrc /root/.bashrc
+ENV LOGS_DIR=logs
 # ENV OMPI_MCA_opal_cuda_support=true
 
 WORKDIR /app
