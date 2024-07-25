@@ -1,5 +1,5 @@
 # Binary Segmentation of Relief Patterns
-This repository contains the official implementation of the paper *Binary segmentation of relief patterns on point clouds*, which presents a neural network designed to perform binary segmentation on surfaces with periodic reliefs. 
+This repository contains the official implementation of the paper *Binary segmentation of relief patterns on point clouds* by Gabriele Paolini, Claudio Tortorici and Stefano Berretti, which presents a neural network designed to perform binary segmentation on surfaces with periodic reliefs. 
 
 The code is largely based on the deep learning library [Myria3D](https://github.com/IGNF/myria3d).
 The repository extends the Myria3D framework by implementing the 3D segmentation neural network introduced in the aforementioned paper.
@@ -28,7 +28,7 @@ Most libraries support the execution of [PyTorch](https://pytorch.org/) and [PyG
 While this is not mandatory for performing inference tests on a single point cloud, as the code can be executed on CPU, I haven't had the time to write a proper Dockerfile for CPU execution.
 
 > [!WARNING]
-> The code was tested on Nvidia GPUs (GeForce GTX 1050Ti Mobile and GeForce RTX 2080).
+> The code was tested on Ubuntu 22.04.4 machines with Nvidia GPUs (GeForce GTX 1050Ti Mobile and GeForce RTX 2080).
 
 Once the image has been built, you can create a new temporary Docker container by running:
 
@@ -39,13 +39,13 @@ docker run --gpus all -it -v ./myria3d_cross:/app/myria3d_cross --rm bin-seg
 The ```-it``` flag starts the container in interactive mode, while ```-v``` tells the Docker to mount the specified directory on the host inside the container (in this case, inside the working directory ```/app```).
 The ```--rm``` option is used to erase everything related to the container as soon as it is stopped.
 
-To start the inference test on the surface from Fig.11, run the following instructions inside the ```/myria3d_cross``` folder:
+To start the inference test on the surface from Fig.11, run the following instructions inside the ```./myria3d_cross``` folder:
 
 ```
 python run.py task.task_name=predict
 ```
 
-If the execution completes successfully, you should find a file named **wand.las** inside the ```/myria3d_cross/outputs``` folder.
+If the execution completes successfully, you should find a file named **wand.las** inside the ```./myria3d_cross/outputs``` folder.
 The point cloud can be viewed with free tools such as [CloudCompare](https://www.cloudcompare.org/).
 The predicted segmentation labels are stored in the **PredictedClassification** scalar field.
 Using CloudCompare, red points should denote smooth areas, while blue points belong to textured regions.
