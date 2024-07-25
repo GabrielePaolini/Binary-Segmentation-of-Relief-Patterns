@@ -1,0 +1,14 @@
+# Do not scale positions to keep meter-space for neural network parameters
+
+#NullifyLowestZ:
+#  _target_: myria3d.pctl.transforms.transforms.NullifyLowestZ
+
+# Motivo del comment out: le patch geodesiche hanno dimensioni differenti, per cui
+# scalarle tutte nel range [-1,1] distorcerebbe le distance calcolate successivamente.
+# Per lo stesso pattern, si avrebbero distanze diverse se le patch di voronoi fossero di dim. diverse.
+#NormalizePos:
+#  _target_: myria3d.pctl.transforms.transforms.NormalizePos
+  #subtile_width: "${datamodule.subtile_width}"
+
+#AlignToAxis:
+#  _target_: myria3d.pctl.transforms.transforms.AlignToAxis

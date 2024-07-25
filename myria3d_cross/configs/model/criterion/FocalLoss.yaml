@@ -1,0 +1,4 @@
+_target_: utilities.focal_loss.FocalLoss
+#alpha: [0.85, 0.15]  # surface 10
+alpha: [0.6, 0.4] # primo set (prima era [0.6, 0.4])
+gamma: 2

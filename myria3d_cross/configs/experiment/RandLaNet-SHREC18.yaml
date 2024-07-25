@@ -1,0 +1,21 @@
+# @package _global_
+
+defaults:
+  - override /model: pyg_randla_net_model.yaml
+  - override /logger: csv
+
+trainer:
+  min_epochs: 150
+  max_epochs: 400
+  num_sanity_val_steps: 0
+
+datamodule:
+  batch_size: 6
+  num_workers: 3
+  # runtime.cwd is where application is run from e.g. where run.py is.
+  data_dir: "${hydra:runtime.cwd}/tests/data/train/"
+  split_csv_path: "${hydra:runtime.cwd}/tests/data/crossvalidation.csv"
+  hdf5_file_path: "${hydra:runtime.cwd}/tests/data/crossvalidation.hdf5"
+
+model:
+  ckpt_path: "${hydra:runtime.cwd}/logs/runs/2024-05-29/13-09-07/checkpoints/epoch_111.ckpt"

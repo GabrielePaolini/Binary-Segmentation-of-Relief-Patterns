@@ -1,0 +1,34 @@
+_target_: myria3d.pctl.datamodule.hdf5.HDF5LidarDataModule
+
+# A standalone precomputed HDF5 dataset can be used without source files by setting data_dir and split_csv_path to null.
+data_dir: ??? # data directory containing LAS files
+epsg: 2154
+split_csv_path: ??? # csv specifying split, with schema basename, split (where split is one out of train/val/test)
+hdf5_file_path: ??? # where to create a HDF5 dataset file from LAS and CSV sources.
+file_format: las
+
+# functions used to load and preprocess data points into a pytorch geometric Data object.
+points_pre_transform:
+  _target_: functools.partial
+  _args_:
+    - "${get_method:myria3d.pctl.points_pre_transform.lidar_hd.lidar_hd_pre_transform}"
+
+pre_filter:
+  _target_: functools.partial
+  _args_:
+    - "${get_method:myria3d.pctl.dataset.utils.pre_filter_below_n_points}"
+  min_num_nodes: 1
+
+# New parameter: sampling method (voronoi, fps, tiling)
+sampling_method: tiling #voronoi
+tile_width: 1000  # default: 1000 Dimensione massima processata (1km x 1km)
+subtile_width: 60 # default:50 Dimensione spaziale (delle batch)
+subtile_overlap_train: 0 # Default: 0
+subtile_overlap_predict: "${predict.subtile_overlap}"
+
+batch_size: 12
+num_workers: 3
+prefetch_factor: 3
+
+defaults:
+  - transforms: default.yaml

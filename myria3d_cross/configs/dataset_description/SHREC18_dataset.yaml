@@ -1,0 +1,24 @@
+_convert_: all  # For omegaconf struct to be converted to python dictionnaries
+# classification_preprocessing_dict = {source_class_code_int: target_class_code_int},
+# 3: medium vegetation -> vegetation
+# 4: high vegetation -> vegetation
+# 160: antenna -> lasting_above
+# 161: wind_turbines -> lasting_above
+# 162: pylon -> lasting_above
+# Note: other codes are also mapped to 1 (unclassified) : they were left in this dataset during its creation, and are a minority.
+# We do not drop them (i.e. we do not map them to the reserved noise code (65) during training) 
+# in order to avoid unintended conflict in production.
+classification_preprocessing_dict: {0: 0, 1: 1}
+
+# classification_dict = {code_int: name_str, ...} and MUST be sorted (increasing order).
+classification_dict: {0: "textured", 1: "untextured"}
+
+# class_weights for the CrossEntropyLoss with format "[[w1,w2,w3...,wk]]" with w_i a float e.g. 1.0
+# Balanced CE: arbitrary weights based on heuristic.
+# class_weights: [2.5,1.0,1.0,5.0,20.0,20.0,20.0] normalized so they sum to 7 to preserve scale of CELoss
+#class_weights: [0.81662792, 1.28957029] # Da determinare con apposito script
+class_weights: [0.86889409, 1.17770128] # Per il dataset con voronoi 40
+#class_weights: [0.86889359, 1.17770221] # Per il dataset con voronoi 120
+# Input and output dims of neural net are dataset dependant:
+d_in: 2
+num_classes: 2

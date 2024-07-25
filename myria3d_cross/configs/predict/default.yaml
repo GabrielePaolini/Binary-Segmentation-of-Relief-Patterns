@@ -1,0 +1,29 @@
+src_data: "${hydra:runtime.cwd}/wand.las"  # Any glob pattern can be used to predict on multiple files.
+output_dir: "${hydra:runtime.cwd}/outputs/"  # Predictions are saved in a new file which shares src_las basename.
+ckpt_path: "${hydra:runtime.cwd}/logs/runs/2024-05-29/13-09-07/checkpoints/epoch_111.ckpt"
+gpus: 1
+
+# Probas interpolation parameters
+# subtile_overlap=25 to use a sliding window of inference of which predictions will be merged.
+# This comes with a computing cost as the effective predicted area is multiplied.
+subtile_overlap: 25
+
+interpolator:
+  _target_: myria3d.models.interpolation.Interpolator
+  # Number of neighbors to consider when interpolating from preds to full cloud.
+  # Use higher interpolation_k to use more context (but this can be leaky)
+  interpolation_k: 100
+
+  classification_dict: ${dataset_description.classification_dict}
+  # Specifying the ouptut:
+  # A list of string matching class names to select specific probas to save e.g. [ground,unclassified] (without space!)
+  # OR keyword "all" to save all probabilities.
+  probas_to_save: "all"
+  # In addition, these dimensions will be created
+  # - Predicted classification based on argmax, with classes specified by dataset_description class dictionary.
+  #   Defaut name: `PredictedClassification`. Can be set to Classification to override its values.
+  # - Shannon entropy of predicted probabilities 
+  #   Defaut name: `entropy`
+  # Set to `null` to disable saving these values.
+  predicted_classification_channel: PredictedClassification
+  entropy_channel: entropy

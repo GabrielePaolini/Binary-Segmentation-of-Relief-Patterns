@@ -1,0 +1,4 @@
+random_jitter:
+  _target_: torch_geometric.transforms.RandomJitter
+  _args_:
+    - 0.1

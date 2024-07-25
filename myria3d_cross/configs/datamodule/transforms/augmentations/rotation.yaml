@@ -1,0 +1,6 @@
+# Rotation around axis - sample should be centered for this.
+RandomRotate:
+  _target_: myria3d.pctl.transforms.transforms.SO3Augmentation
+  _args_:
+    - 180
+  axis: 2
