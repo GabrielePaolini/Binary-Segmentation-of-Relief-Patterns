@@ -17,7 +17,7 @@ The repository contains the following items:
 - **LICENSE**: This is the license under which the project's code is distributed.
 
 ## How to produce Fig.11 from the paper
-Assuming you have [Docker CLI](https://docs.docker.com/engine/reference/commandline/cli/) installed, you can build the Docker image by running these instructions in the root directory of the project:
+Assuming you have [Docker CLI](https://docs.docker.com/engine/reference/commandline/cli/) and [nvidia-container-toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html) installed, you can build the Docker image by running these instructions in the root directory of the project:
 
 ```
 docker build -t bin-seg .
@@ -42,6 +42,7 @@ The ```--rm``` option is used to erase everything related to the container as so
 To start the inference test on the surface from Fig.11, run the following instructions inside the ```./myria3d_cross``` folder:
 
 ```
+cd myria3d_cross
 python run.py task.task_name=predict
 ```
 
