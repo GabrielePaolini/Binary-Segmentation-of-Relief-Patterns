@@ -15,8 +15,9 @@ RUN ~/miniconda3/bin/conda init bash && bash ~/.bashrc && . ~/.bashrc && \
 	apt-get update && apt-get install -y --no-install-recommends build-essential && \
 	rm -rf /var/lib/apt/lists/* && \
 	python -m pip install --upgrade pip && \
-	pip install python-dotenv hydra-core tqdm comet-ml lightning h5py pandas potpourri3d laspy matplotlib torch_geometric torchvision --upgrade && \
-	pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.3.0+cu121.html && \
+ 	pip install torch==2.3.1 torchvision==0.18.1 --index-url https://download.pytorch.org/whl/cu121 && \
+	pip install python-dotenv hydra-core tqdm comet-ml lightning h5py pandas potpourri3d laspy matplotlib torch_geometric --upgrade && \
+	pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.3.1+cu121.html && \
 	pip install pytorch_metric_learning
 	
 ENV conda ~/miniconda3/bin/conda
