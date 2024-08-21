@@ -68,5 +68,17 @@ export the corresponding environment variable by typing ```export LOGS_DIR=logs`
 ## How to cite
 If you want to cite this work, please use the following BibTex entry:
 ```
-BibTex entry (WIP)
+@article{PAOLINI2024104020,
+title = {Binary segmentation of relief patterns on point clouds},
+journal = {Computers & Graphics},
+volume = {123},
+pages = {104020},
+year = {2024},
+issn = {0097-8493},
+doi = {https://doi.org/10.1016/j.cag.2024.104020},
+url = {https://www.sciencedirect.com/science/article/pii/S0097849324001559},
+author = {Gabriele Paolini and Claudio Tortorici and Stefano Berretti},
+keywords = {Relief pattern, Point cloud, 3D segmentation},
+abstract = {Analysis of 3D textures, also known as relief patterns is a challenging task that requires separating repetitive surface patterns from the underlying global geometry. Existing works classify entire surfaces based on one or a few patterns by extracting ad-hoc statistical properties. Unfortunately, these methods are not suitable for objects with multiple geometric textures and perform poorly on more complex shapes. In this paper, we propose a neural network for binary segmentation to infer per-point labels based on the presence of surface relief patterns. We evaluated the proposed architecture on a high resolution point cloud dataset, surpassing the state-of-the-art, while maintaining memory and computation efficiency.}
+}
 ```
