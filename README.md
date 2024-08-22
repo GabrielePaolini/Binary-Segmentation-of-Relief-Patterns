@@ -28,7 +28,7 @@ Most libraries support the execution of [PyTorch](https://pytorch.org/) and [PyG
 While this is not mandatory for performing inference tests on a single point cloud, as the code can be executed on CPU, I haven't had the time to write a proper Dockerfile for CPU execution.
 
 > [!WARNING]
-> The code was tested on Ubuntu 22.04.4 machines with Nvidia GPUs (GeForce GTX 1050Ti Mobile and GeForce RTX 2080).
+> The code was mainly tested on Ubuntu 22.04.4 machines with Nvidia GPUs (GeForce GTX 1050Ti Mobile and GeForce RTX 2080) and Ubuntu 24.04 with Nvidia RTX 3050.
 
 Once the image has been built, you can create a new temporary Docker container by running:
 
@@ -53,6 +53,18 @@ Using CloudCompare, red points should denote smooth areas, while blue points bel
 For a better view, please increase the point size.
 
 ### Troubleshooting
+If the Docker image build fails or you encounter the following error:
+
+```
+RuntimeError: Unexpected error from cudaGetDeviceCount(). Did you run some cuda functions before calling NumCudaDevices() that might have already set an error? Error 804: forward compatibility was attempted on non supported HW
+```
+
+This issue may be related to an incompatibility between the Nvidia driver version installed on your computer and the CUDA runtime version required by the image.
+First, check the Nvidia driver version by running the ```nvidia-smi``` command.
+Then visit the [CUDA Application Compatibility Support Matrix](https://docs.nvidia.com/deploy/cuda-compatibility/index.html#id3) from the official Nvidia documentation to determine the CUDA runtime version compatible with your Nvidia driver version.
+Depending on your Nvidia driver verion, you should update the base image in your dockerfile to the first compatible CUDA runtime version.
+For example, if you have Nvidia driver version 535 or higher, you need to modify the first line of your dockerfile to use ```nvidia/cuda:12.2-runtime-ubuntu22.04``` or a higher version.
+
 If the program raises a ```KeyError```:
 
 ```
