@@ -1,5 +1,5 @@
 # Binary Segmentation of Relief Patterns
-This repository contains the official implementation of the paper *Binary segmentation of relief patterns on point clouds* by Gabriele Paolini, Claudio Tortorici and Stefano Berretti, which presents a neural network designed to perform binary segmentation on surfaces with periodic reliefs. 
+This repository contains the official implementation of the paper [*Binary segmentation of relief patterns on point clouds*](https://www.sciencedirect.com/science/article/pii/S0097849324001559) by [Gabriele Paolini](https://orcid.org/0009-0003-5325-2076), [Claudio Tortorici](https://www.scopus.com/authid/detail.uri?authorId=56798208800) and [Stefano Berretti](https://www.scopus.com/authid/detail.uri?authorId=6603918748), which presents a neural network designed to perform binary segmentation on surfaces with periodic reliefs. 
 
 The code is largely based on the deep learning library [Myria3D](https://github.com/IGNF/myria3d).
 The repository extends the Myria3D framework by implementing the 3D segmentation neural network introduced in the aforementioned paper.
